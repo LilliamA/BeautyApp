@@ -1,0 +1,8 @@
+<%= form_for([@user, @appointment]) do |f| %>
+<strong>Title:</strong>
+<%= f.text_field :title, class: "form-control pull-right" %></li>
+<strong>Date:</strong>
+<%= f.date_field :date, class: "form-control pull-right" %></li>
+
+<%= f.submit "Submit", class: 'button' %>
+<% end %>

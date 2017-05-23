@@ -1,0 +1,7 @@
+<%= form_for(@user)  do |f| %>
+<strong>Correo:</strong>
+  <%= f.text_field :email, class: "form-control pull-right" %></li>
+<strong>Rol Actual:</strong>
+ <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
+<%= f.submit "Submit", class: 'button' %>
+<% end %>

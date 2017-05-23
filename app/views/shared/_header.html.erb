@@ -1,0 +1,20 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text"><%= link_to "BeautySalon", landing_path%></li>
+    </ul>
+  </div>  <div class="top-bar-right">
+    <ul class="menu">
+      <% if user_signed_in? %>
+       <% if current_user.admin? %>
+       <li><%= link_to('Employees', users_path)%></li>
+        <%end%>
+
+
+      <li><%= link_to "LogOut", destroy_user_session_path, method: :delete %></li>
+      <%else%>
+      <li><%= link_to('login', new_user_session_path)%></li>
+      <%end%>
+    </ul>
+  </div>
+</div>
