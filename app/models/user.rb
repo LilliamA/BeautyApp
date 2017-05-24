@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   def self.new_with_password(attr = {})
     password = Devise.friendly_token.first(8)
-    create(attr.merge(password: password, password_confirmation: password))
+    user = User.create(attr.merge(password: password, password_confirmation: password))
   end
 
    def self.get_roles_for_select

@@ -14,6 +14,7 @@ class UsersController < ApplicationController
     authorize @user
     respond_to do |format|
       if @user.save
+      UserMailer.welcome_email(@user).deliver_now
         format.html { redirect_to @user }
       else
         format.html { redirect_to landing_path }

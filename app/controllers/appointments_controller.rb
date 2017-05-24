@@ -2,6 +2,12 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @user = current_user
+    if current_user.admin?
+      @appointments = Appointment.all
+    else
+      @appointments = @user.appointments
+    end
   end
 
   def new
@@ -43,12 +49,17 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def destroy
+  def show
     @user = User.find(params[:id])
+    @appointment = @user.appointments.find(params[:id])
+  end
+
+  def destroy
+    @user = User.find(params[:user_id])
     @appointment = @user.appointments.find(params[:id])
     @appointment.destroy
     authorize @user
-    redirect_to @user 
+    redirect_to @user
   end
 
   private

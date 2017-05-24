@@ -5,16 +5,15 @@
     </ul>
   </div>  <div class="top-bar-right">
     <ul class="menu">
-      <% if user_signed_in? %>
-       <% if current_user.admin? %>
-       <li><%= link_to('Employees', users_path)%></li>
-        <%end%>
-
-
-      <li><%= link_to "LogOut", destroy_user_session_path, method: :delete %></li>
-      <%else%>
-      <li><%= link_to('login', new_user_session_path)%></li>
-      <%end%>
+    <% if user_signed_in? %>
+    <% if current_user.admin?%>
+    <li><%= link_to('Employees',  users_path(current_user))%></li>
+    <%end%>
+    <li><%= link_to('Appointments', user_appointments_path(current_user))%></li>
+    <li><%= link_to "LogOut", destroy_user_session_path, method: :delete %></li>
+    <%else%>
+    <li><%= link_to('login', new_user_session_path)%></li>
+    <%end%>
     </ul>
   </div>
 </div>
